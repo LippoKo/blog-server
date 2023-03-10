@@ -1,8 +1,13 @@
 const express = require('express')
 const app = express()
+const connectDatabase = require('./src/database/db')
 
-app.get('/home', (req, res) => {
-  res.send('Hello World')
-})
+const userRoute = require('./src/routes/user.route')
 
-app.listen(3000)
+const PORT = 3001
+
+connectDatabase()
+app.use(express.json())
+app.use('/user', userRoute)
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
