@@ -2,4 +2,16 @@ const User = require('../models/User')
 
 const createService = (body) => User.create(body)
 
-module.exports = { createService }
+const findAllService = () => User.find()
+
+const findByIdService = (id) => User.findById(id)
+
+const updateService = (id, name, surname, email, password) =>
+  User.findOneAndUpdate({ _id: id }, { name, surname, email, password })
+
+module.exports = {
+  createService,
+  findAllService,
+  findByIdService,
+  updateService,
+}
